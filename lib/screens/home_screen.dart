@@ -4,6 +4,7 @@
  * Lớp: 23T_DT3
  */
 
+import 'dart:async';
 import 'package:flutter/material.dart';
 import '../models/contact.dart';
 import '../services/contact_service.dart';
@@ -25,6 +26,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _searchController = TextEditingController();
+  Timer? _snackBarTimer;
 
   @override
   void initState() {
@@ -36,6 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void dispose() {
+    _snackBarTimer?.cancel();
     _searchController.dispose();
     super.dispose();
   }
@@ -166,8 +169,11 @@ class _HomeScreenState extends State<HomeScreen> {
   void _deleteAndShowUndo(Contact contact) async {
     final removed = await widget.service.deleteContact(contact.id);
     if (removed != null && mounted) {
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      ScaffoldMessenger.of(context).showSnackBar(
+      _snackBarTimer?.cancel();
+      final messenger = ScaffoldMessenger.of(context);
+      messenger.clearSnackBars();
+
+      messenger.showSnackBar(
         SnackBar(
           content: Text('Đã xóa "${removed.contact.name}"'),
           behavior: SnackBarBehavior.floating,
@@ -178,11 +184,20 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'HOÀN TÁC',
             textColor: Colors.amberAccent,
             onPressed: () {
+              _snackBarTimer?.cancel();
+              messenger.clearSnackBars();
               widget.service.restoreContact(removed.contact, removed.index);
             },
           ),
         ),
       );
+
+      // Đảm bảo 100% tự động xóa bỏ SnackBar sau 2 giây mà không bị kẹt bởi hover/animation
+      _snackBarTimer = Timer(const Duration(milliseconds: 2000), () {
+        if (mounted) {
+          messenger.clearSnackBars();
+        }
+      });
     }
   }
 

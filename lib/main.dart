@@ -24,15 +24,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: contactService,
-      builder: (context, _) {
+    return ValueListenableBuilder<bool>(
+      valueListenable: contactService.themeNotifier,
+      builder: (context, isDark, _) {
         return MaterialApp(
           title: 'Danh Bạ Điện Thoại',
           debugShowCheckedModeBanner: false,
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
-          themeMode: contactService.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+          themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
           home: HomeScreen(service: contactService),
         );
       },

@@ -19,6 +19,8 @@ class ContactService extends ChangeNotifier {
   static const String _storageKey = 'saved_contacts_v1';
   static const String _themeKey = 'app_theme_dark_mode';
 
+  final ValueNotifier<bool> themeNotifier = ValueNotifier<bool>(false);
+
   List<Contact> _contacts = Contact.sampleContacts();
   bool _isLoading = false;
   bool _isDarkMode = false;
@@ -107,6 +109,7 @@ class ContactService extends ChangeNotifier {
     try {
       final prefs = await SharedPreferences.getInstance();
       _isDarkMode = prefs.getBool(_themeKey) ?? false;
+      themeNotifier.value = _isDarkMode;
 
       final rawData = prefs.getString(_storageKey);
       if (rawData != null && rawData.isNotEmpty) {
@@ -142,6 +145,7 @@ class ContactService extends ChangeNotifier {
   /// Chuyển đổi Dark Mode / Light Mode
   Future<void> toggleTheme() async {
     _isDarkMode = !_isDarkMode;
+    themeNotifier.value = _isDarkMode;
     notifyListeners();
     try {
       final prefs = await SharedPreferences.getInstance();

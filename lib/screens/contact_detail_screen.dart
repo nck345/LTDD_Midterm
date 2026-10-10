@@ -4,6 +4,7 @@
  * Lớp: 23T_DT3
  */
 
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../models/contact.dart';
@@ -73,8 +74,9 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
       if (mounted) {
         Navigator.of(context).pop(); // Quay về màn hình chính
         if (removedData != null) {
-          ScaffoldMessenger.of(context).hideCurrentSnackBar();
-          ScaffoldMessenger.of(context).showSnackBar(
+          final messenger = ScaffoldMessenger.of(context);
+          messenger.clearSnackBars();
+          messenger.showSnackBar(
             SnackBar(
               content: Text('Đã xóa "${removedData.contact.name}"'),
               behavior: SnackBarBehavior.floating,
@@ -85,11 +87,16 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                 label: 'HOÀN TÁC',
                 textColor: Colors.amberAccent,
                 onPressed: () {
+                  messenger.clearSnackBars();
                   widget.service.restoreContact(removedData.contact, removedData.index);
                 },
               ),
             ),
           );
+
+          Timer(const Duration(milliseconds: 2000), () {
+            messenger.clearSnackBars();
+          });
         }
       }
     }
