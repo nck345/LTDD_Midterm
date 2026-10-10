@@ -82,10 +82,15 @@ flutter pub get
 #### Bước 2: Khởi chạy ứng dụng
 
 * **Chạy trên Thiết bị Android (Máy ảo hoặc thiết bị thật):**
-  ```bash
-  flutter run
-  ```
-  *(Hoặc chỉ định rõ: `flutter run -d android`)*
+  * **Chế độ tối ưu hiệu năng siêu mượt (Khuyên dùng khi chấm bài / demo):**
+    ```bash
+    flutter run --release
+    ```
+    *(Biên dịch AOT tối ưu hóa phần cứng, giúp máy ảo chạy mượt mà 60 FPS, không bị giật lag).*
+  * **Chế độ gỡ lỗi thông thường (Hỗ trợ Hot Reload):**
+    ```bash
+    flutter run
+    ```
 
 * **Chạy trên Trình duyệt Web (Google Chrome / Edge):**
   ```bash
