@@ -170,6 +170,9 @@ class _HomeScreenState extends State<HomeScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Đã xóa "${removed.contact.name}"'),
+          behavior: SnackBarBehavior.floating,
+          duration: const Duration(milliseconds: 2500),
+          showCloseIcon: true,
           action: SnackBarAction(
             label: 'HOÀN TÁC',
             textColor: Colors.amberAccent,
@@ -177,7 +180,6 @@ class _HomeScreenState extends State<HomeScreen> {
               widget.service.restoreContact(removed.contact, removed.index);
             },
           ),
-          duration: const Duration(seconds: 4),
         ),
       );
     }
@@ -245,8 +247,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       _searchController.clear();
                       await widget.service.resetToSampleData();
                       if (context.mounted) {
+                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Đã khôi phục danh bạ mẫu thành công!')),
+                          const SnackBar(
+                            content: Text('Đã khôi phục danh bạ mẫu thành công!'),
+                            behavior: SnackBarBehavior.floating,
+                            duration: Duration(seconds: 2),
+                          ),
                         );
                       }
                     }

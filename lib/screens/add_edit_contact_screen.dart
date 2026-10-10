@@ -83,9 +83,12 @@ class _AddEditContactScreenState extends State<AddEditContactScreen> {
     if (_isEditing) {
       await widget.service.updateContact(newContact);
       if (mounted) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: Colors.green.shade700,
+            behavior: SnackBarBehavior.floating,
+            duration: const Duration(seconds: 2),
             content: Row(
               children: [
                 const Icon(Icons.check_circle, color: Colors.white),
@@ -100,9 +103,12 @@ class _AddEditContactScreenState extends State<AddEditContactScreen> {
     } else {
       await widget.service.addContact(newContact);
       if (mounted) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: Colors.green.shade700,
+            behavior: SnackBarBehavior.floating,
+            duration: const Duration(seconds: 2),
             content: Row(
               children: [
                 const Icon(Icons.check_circle, color: Colors.white),

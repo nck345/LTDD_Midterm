@@ -73,9 +73,13 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
       if (mounted) {
         Navigator.of(context).pop(); // Quay về màn hình chính
         if (removedData != null) {
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('Đã xóa "${removedData.contact.name}"'),
+              behavior: SnackBarBehavior.floating,
+              duration: const Duration(milliseconds: 2500),
+              showCloseIcon: true,
               action: SnackBarAction(
                 label: 'HOÀN TÁC',
                 textColor: Colors.amberAccent,
