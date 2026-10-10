@@ -438,6 +438,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           delegate: SliverChildBuilderDelegate(
                             (context, index) {
                               final contact = contacts[index];
+                              // Custom layout
                               return ContactCard(
                                 contact: contact,
                                 onTap: () {

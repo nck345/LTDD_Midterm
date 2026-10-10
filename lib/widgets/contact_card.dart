@@ -7,6 +7,7 @@
 import 'package:flutter/material.dart';
 import '../models/contact.dart';
 
+// Custom layout
 class ContactCard extends StatelessWidget {
   final Contact contact;
   final VoidCallback onTap;
@@ -77,6 +78,7 @@ class ContactCard extends StatelessWidget {
           ],
         ),
       ),
+      // Custom layout
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
         decoration: BoxDecoration(
