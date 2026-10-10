@@ -7,7 +7,6 @@
 import 'package:flutter/material.dart';
 import '../services/contact_service.dart';
 
-// Custom layout
 class CategoryFilterChips extends StatelessWidget {
   final ContactService service;
 

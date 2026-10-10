@@ -78,7 +78,6 @@ class ContactCard extends StatelessWidget {
           ],
         ),
       ),
-      // Custom layout
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
         decoration: BoxDecoration(
