@@ -78,8 +78,9 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
             SnackBar(
               content: Text('Đã xóa "${removedData.contact.name}"'),
               behavior: SnackBarBehavior.floating,
-              duration: const Duration(milliseconds: 2500),
+              duration: const Duration(seconds: 2),
               showCloseIcon: true,
+              dismissDirection: DismissDirection.horizontal,
               action: SnackBarAction(
                 label: 'HOÀN TÁC',
                 textColor: Colors.amberAccent,

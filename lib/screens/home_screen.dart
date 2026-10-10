@@ -171,8 +171,9 @@ class _HomeScreenState extends State<HomeScreen> {
         SnackBar(
           content: Text('Đã xóa "${removed.contact.name}"'),
           behavior: SnackBarBehavior.floating,
-          duration: const Duration(milliseconds: 2500),
+          duration: const Duration(seconds: 2),
           showCloseIcon: true,
+          dismissDirection: DismissDirection.horizontal,
           action: SnackBarAction(
             label: 'HOÀN TÁC',
             textColor: Colors.amberAccent,
