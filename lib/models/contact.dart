@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Contact {
+class Contact { // Liên hệ
   final String id;
   final String name;
   final String phone;
   final String email;
-  final String category; // 'Gia đình', 'Bạn bè', 'Công việc', 'VIP', 'Khác'
+  final String category;
   final String address;
   final String note;
   final bool isFavorite;
@@ -84,7 +84,6 @@ class Contact {
     );
   }
 
-  /// Trích xuất chữ cái đầu để hiển thị trên Avatar
   String get initials {
     final trimmed = name.trim();
     if (trimmed.isEmpty) return '?';
@@ -123,7 +122,7 @@ class Contact {
     'Khác',
   ];
 
-  /// Danh sách danh bạ mẫu ban đầu phục vụ chấm bài và trải nghiệm
+  /// Danh sách danh bạ mẫu ban đầu
   static List<Contact> sampleContacts() {
     return [
       Contact(

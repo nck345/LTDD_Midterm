@@ -179,14 +179,14 @@ class ContactService extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Câu 2.1: Thêm danh bạ mới
+  /// Thêm danh bạ mới
   Future<void> addContact(Contact contact) async {
     _contacts.insert(0, contact);
     notifyListeners();
     await _saveToStorage();
   }
 
-  /// Câu 2.2: Chỉnh sửa thông tin liên hệ
+  /// Chỉnh sửa thông tin liên hệ
   Future<void> updateContact(Contact updatedContact) async {
     final index = _contacts.indexWhere((c) => c.id == updatedContact.id);
     if (index != -1) {
@@ -196,7 +196,7 @@ class ContactService extends ChangeNotifier {
     }
   }
 
-  /// Câu 2.3: Xóa danh bạ (trả về contact bị xóa kèm vị trí để hỗ trợ Hoàn tác)
+  /// Xóa danh bạ (trả về contact bị xóa kèm vị trí để hỗ trợ Hoàn tác)
   Future<({Contact contact, int index})?> deleteContact(String id) async {
     final index = _contacts.indexWhere((c) => c.id == id);
     if (index != -1) {
@@ -208,7 +208,7 @@ class ContactService extends ChangeNotifier {
     return null;
   }
 
-  /// Hoàn tác xóa danh bạ (Undo Delete)
+  /// Hoàn tác xóa danh bạ
   Future<void> restoreContact(Contact contact, int index) async {
     if (index >= 0 && index <= _contacts.length) {
       _contacts.insert(index, contact);
